@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>View Book</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #343a40;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Book Details Styles */
+    .book-details {
+      background-color: white;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .book-details p {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .book-details strong {
+      color: #343a40;
+    }
+
+    /* Action Links Styles */
+    .actions {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .actions a {
+      margin: 0 10px;
+      color: #007bff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .actions a:hover {
+      text-decoration: underline;
+    }
+
+    .actions a.delete-link {
+      color: #dc3545;
+    }
+
+    .actions a.delete-link:hover {
+      color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Book Details</h1>
+
+<div class="book-details">
+  <p><strong>Title:</strong> <span th:text="${book.title}"></span></p>
+  <p><strong>ISBN:</strong> <span th:text="${book.isbn}"></span></p>
+  <p><strong>Author:</strong> <span th:text="${book.author.name}"></span></p>
+  <p><strong>Category:</strong> <span th:text="${book.category.name}"></span></p>
+  <p><strong>Stock:</strong> <span th:text="${book.stock}"></span></p>
+  <p><strong>Description:</strong> <span th:text="${book.description}"></span></p>
+</div>
+
+<div class="actions">
+  <a href="/books">Back to List</a> |
+  <a th:href="@{/books/update/{id}(id=${book.id})}">Edit</a> |
+  <a th:href="@{/books/delete/{id}(id=${book.id})}" class="delete-link" onclick="return confirm('Are you sure?')">Delete</a>
+</div>
+
+</body>
+</html>

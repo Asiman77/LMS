@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Student</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .form-container {
+      width: 50%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #ffc107;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e0a800;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      width: fit-content;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<h1>Update Student</h1>
+<div class="form-container">
+  <form th:action="@{/students/update/{id}(id=${student.id})}" th:object="${student}" method="post">
+    <div>
+      <label for="identifier">Identifier:</label>
+      <input type="text" id="identifier" th:field="*{identifier}" required>
+    </div>
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" th:field="*{email}" required>
+    </div>
+    <button type="submit">Update</button>
+  </form>
+</div>
+<a class="back-link" th:href="@{/students}">Back to List</a>
+</body>
+</html>

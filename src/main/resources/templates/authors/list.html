@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Author List</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Georgia', serif; /* Serif font for a literary feel */
+            background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); /* Library background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Overlay for better readability */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Light overlay */
+            z-index: 1;
+        }
+
+        /* Container for content */
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Link Styles */
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Add New Author Link */
+        .add-author-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 12px 24px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .add-author-link:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e9ecef;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Action Links */
+        .actions a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .actions a:hover {
+            text-decoration: underline;
+        }
+
+        .actions a.delete-link {
+            color: #dc3545;
+        }
+
+        .actions a.delete-link:hover {
+            color: #c82333;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-view {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .btn-view:hover {
+            background-color: #138496;
+        }
+
+        .btn-edit {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .btn-edit:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Author List</h1>
+
+    <a href="/authors/create" class="add-author-link">Add New Author</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Biography</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="author : ${authors}">
+            <td th:text="${author.name}"></td>
+            <td th:text="${author.biography}"></td>
+            <td class="actions">
+                <a th:href="@{/authors/{id}(id=${author.id})}" class="btn btn-view">View</a>
+                <a th:href="@{/authors/update/{id}(id=${author.id})}" class="btn btn-edit">Edit</a>
+                <a th:href="@{/authors/delete/{id}(id=${author.id})}" class="btn btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

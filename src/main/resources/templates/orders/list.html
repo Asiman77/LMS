@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    a {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f8f9fa;
+      font-weight: bold;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .actions {
+      white-space: nowrap;
+    }
+    .actions a, .actions button {
+      margin-right: 10px;
+      color: #007bff;
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .actions button[disabled] {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    .actions a:hover, .actions button:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>Order List</h1>
+<a href="/orders/create">Create New Order</a>
+<table>
+  <thead>
+  <tr>
+    <th>Student</th>
+    <th>Book</th>
+    <th>Order Date</th>
+    <th>Return Date</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="order : ${orders}">
+    <td th:text="${order.student.name}"></td>
+    <td th:text="${order.book.title}"></td>
+    <td th:text="${#temporals.format(order.orderTimestamp, 'yyyy-MM-dd HH:mm')}"></td>
+    <td th:text="${order.returnTimestamp != null ? #temporals.format(order.returnTimestamp, 'yyyy-MM-dd HH:mm') : 'Not returned'}"></td>
+    <td class="actions">
+      <a th:href="@{/orders/{id}(id=${order.id})}">View</a> |
+      <form th:action="@{/orders/return/{id}(id=${order.id})}" method="post" style="display:inline;">
+        <button type="submit" th:disabled="${order.returnTimestamp != null}">Return</button>
+      </form> |
+      <a th:href="@{/orders/delete/{id}(id=${order.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

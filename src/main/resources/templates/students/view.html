@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .info {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            width: fit-content;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Student Details</h1>
+<div class="container">
+    <div class="info"><strong>Identifier:</strong> <span th:text="${student.identifier}"></span></div>
+    <div class="info"><strong>Name:</strong> <span th:text="${student.name}"></span></div>
+    <div class="info"><strong>Email:</strong> <span th:text="${student.email}"></span></div>
+</div>
+<a class="back-link" th:href="@{/students}">Back to List</a>
+</body>
+</html>

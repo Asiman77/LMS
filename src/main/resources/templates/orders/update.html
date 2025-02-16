@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Order</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #007BFF;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>Update Order</h1>
+<form th:action="@{/orders/update/{id}(id=${order.id})}" th:object="${order}" method="post">
+  <label for="bookTitle">Book Title:</label>
+  <input type="text" id="bookTitle" th:field="*{bookTitle}" required>
+  <br>
+  <label for="customerName">Customer Name:</label>
+  <input type="text" id="customerName" th:field="*{customerName}" required>
+  <br>
+  <label for="orderDate">Order Date:</label>
+  <input type="date" id="orderDate" th:field="*{orderDate}" required>
+  <br>
+  <label for="returnDate">Return Date:</label>
+  <input type="date" id="returnDate" th:field="*{returnDate}">
+  <br>
+  <button type="submit">Update</button>
+</form>
+<a class="back-link" th:href="@{/orders}">Back to List</a>
+</body>
+</html>

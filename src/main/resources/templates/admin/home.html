@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Library Home</title>
+    <style>
+        /* General Styles */
+        body {
+            background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&q=80'); /* Library background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: rgba(52, 58, 64, 0.9); /* Semi-transparent dark background */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Container Styles */
+        .container {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(5px); /* Blur effect for glassmorphism */
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #343a40;
+        }
+
+        .card p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            margin: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary { background-color: #007bff; }
+        .btn-primary:hover { background-color: #0056b3; }
+
+        .btn-secondary { background-color: #6c757d; }
+        .btn-secondary:hover { background-color: #5a6268; }
+
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+
+        .btn-success { background-color: #28a745; }
+        .btn-success:hover { background-color: #218838; }
+
+        /* Footer Styles */
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(52, 58, 64, 0.9); /* Semi-transparent dark background */
+            color: white;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    Library Management System
+    <a class="btn btn-danger" href="/Logout">Logout</a>
+</div>
+
+<!-- Website Home Content -->
+<div class="container">
+    <div class="card">
+        <h2>Welcome to the Library!</h2>
+        <p>You have successfully logged in. Explore our collection and manage your resources with ease.</p>
+
+        <div>
+            <a href="/authors" class="btn btn-primary">Authors</a>
+            <a href="/books" class="btn btn-secondary">Books</a>
+            <a href="/orders" class="btn btn-success">Orders</a>
+            <a href="/categories" class="btn btn-primary">Categories</a>
+            <a href="/students" class="btn btn-primary">Students</a>
+            <a href="/website/contact" class="btn btn-primary">About Us</a>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    &copy; 2023 Library Management System. All rights reserved. |
+    <a href="/website/contact">Contact Us</a>
+</div>
+
+</body>
+</html>
